@@ -1,4 +1,4 @@
-FROM golang:1.19
+FROM --platform=linux/amd64 amd64/golang:1.22
 
 RUN mkdir -p /app/stock
 
