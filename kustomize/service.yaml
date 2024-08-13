@@ -7,7 +7,6 @@ spec:
     - port: 80
       name: web
       targetPort: web
-  type: LoadBalancer
-  loadBalancerIP: "35.246.194.219"
+  type: NodePort
   selector:
     app: ws-cpt-go
