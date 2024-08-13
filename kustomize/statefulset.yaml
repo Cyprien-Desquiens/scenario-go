@@ -20,15 +20,15 @@ spec:
           ports:
             - containerPort: 80
               name: web
-#          volumeMounts:
-#            - name: www
-#              mountPath: /app
-#  volumeClaimTemplates:
-#    - metadata:
-#        name: www
-#      spec:
-#        accessModes: [ "ReadWriteOnce" ]
-#        storageClassName: standard
-#        resources:
-#          requests:
-#            storage: 1Mi
+          volumeMounts:
+            - name: www
+              mountPath: /app/stock
+  volumeClaimTemplates:
+    - metadata:
+        name: www
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: standard
+        resources:
+          requests:
+            storage: 1Mi
