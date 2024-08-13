@@ -16,7 +16,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
         - name: ws-cpt-go
-          image: europe-west3-docker.pkg.dev/valiuz-sbx-cde/registry/valiuz_cde_sb_go:1.0
+          image: europe-west3-docker.pkg.dev/valiuz-sbx-cde/registry/ws-cpt-go:1.0
           ports:
             - containerPort: 80
               name: web
