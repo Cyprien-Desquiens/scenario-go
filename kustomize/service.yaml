@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: ws-cpt-go
 spec:
-  type: NodePort
   ports:
     - port: 80
       name: web
