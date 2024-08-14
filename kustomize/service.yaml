@@ -6,7 +6,5 @@ spec:
   ports:
     - port: 80
       name: web
-      targetPort: web
-  type: NodePort
   selector:
     app: ws-cpt-go
