@@ -1,15 +1,19 @@
-#apiVersion: networking.k8s.io/v1
-#kind: Ingress
-#metadata:
-#  name: ing-ws-cpt-go
-#spec:
-#  rules:
-#    - http:
-#        paths:
-#          - path: /*
-#            pathType: ImplementationSpecific
-#            backend:
-#              service:
-#                name: ws-cpt-go
-#                port:
-#                  number: 80
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ws-cpt-go-ing
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: ws-cpt-go.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ws-cpt-go
+                port:
+                  number: 80
