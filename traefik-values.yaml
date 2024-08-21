@@ -1,0 +1,24 @@
+service:
+  enabled: true
+  type: LoadBalancer
+  loadBalancerSourceRanges:
+    - "34.155.72.205/32"
+    - "34.163.5.37/32"
+    - "34.155.39.192/32"
+    - "34.155.53.138/32"
+    - "35.210.213.157/32"
+    - "35.210.194.21/32"
+    - "147.161.152.124/32"
+  spec:
+    loadBalancerIP: 34.159.19.29
+providers:
+  kubernetesCRD:
+    enabled: true
+
+http:
+  routers:
+    myRouter:
+      entryPoints:
+        - "web"
+      rule: "Host(`ws-cpt-go.com`)"
+      service: "ws-cpt-go"

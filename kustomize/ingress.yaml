@@ -1,14 +1,12 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ws-cpt-go-ing
+  name: ing-traefik
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: web
+    kubernetes.io/ingress.class: traefik
 spec:
-  ingressClassName: traefik
   rules:
-    - host: ws-cpt-go.com
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix
