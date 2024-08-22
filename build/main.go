@@ -1,28 +1,32 @@
 package main
 
 import (
-	"fmt"
+	"github.com/labstack/echo/v4"
 	"net/http"
+	"os"
 
-	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/labstack/echo/v4/middleware"
 )
-
-var pingCounter = prometheus.NewCounter(
-	prometheus.CounterOpts{
-		Name: "ping_request_count",
-		Help: "No of request handled by Ping handler",
-	},
-)
-
-func ping(w http.ResponseWriter, req *http.Request) {
-	pingCounter.Inc()
-	fmt.Fprintf(w, "pong")
-}
 
 func main() {
-	prometheus.MustRegister(pingCounter)
-	http.HandleFunc("/ping", ping)
-	http.Handle("/metrics", promhttp.Handler())
-	http.ListenAndServe(":8090", nil)
+	e := echo.New()
+
+	// Middleware
+	e.Use(middleware.Logger())
+	e.Use(middleware.Recover())
+
+	e.GET("/", func(c echo.Context) error {
+		return c.String(http.StatusOK, "Hello, World!")
+	})
+
+	e.GET("/health", func(c echo.Context) error {
+		return c.String(http.StatusOK, "Health is OK!!")
+	})
+
+	httpPort := os.Getenv("PORT")
+	if httpPort == "" {
+		httpPort = "8080"
+	}
+
+	e.Logger.Fatal(e.Start(":" + httpPort))
 }
