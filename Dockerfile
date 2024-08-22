@@ -4,7 +4,7 @@ RUN mkdir -p /app/stock
 
 WORKDIR /app
 
-COPY build .
+COPY . .
 
 ENV GOPATH="/app"
 
