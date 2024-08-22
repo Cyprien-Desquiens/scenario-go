@@ -8,9 +8,6 @@ COPY . .
 
 ENV GOPATH="/app"
 
-RUN go mod init prom_example
-RUN go mod tidy
-
 RUN go build ws-cpt-go.go
 
 EXPOSE 80
