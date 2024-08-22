@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file build/Dockerfile --tag europe-west3-docker.pkg.dev/valiuz-sbx-cde/registry/ws-cpt-go:1.1-cicd
+      run: docker build . --file Dockerfile --tag europe-west3-docker.pkg.dev/valiuz-sbx-cde/registry/ws-cpt-go:1.1-cicd
