@@ -8,7 +8,10 @@ COPY . .
 
 ENV GOPATH="/app"
 
-RUN go build ws-cpt-go.go
+#RUN apt-get update
+#RUN apt-get -y install prometheus-node-exporter
+
+#RUN go build ws-cpt-go.go
 
 EXPOSE 80
 

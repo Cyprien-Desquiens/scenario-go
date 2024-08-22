@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promauto"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -30,6 +33,7 @@ func increment(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Bonjour, vous avez accédé %d fois à cette page.", cpt)
 
 	writeIncrement(strconv.Itoa(cpt), file)
+	opsProcessed.Inc()
 }
 
 func writeIncrement(c string, file *os.File) {
@@ -44,7 +48,15 @@ func readIncrement(filename string) string {
 	return string(data)
 }
 
+var (
+	opsProcessed = promauto.NewCounter(prometheus.CounterOpts{
+		Name: "myapp_processed_ops_total",
+		Help: "The total number of processed events",
+	})
+)
+
 func main() {
 	http.HandleFunc("/api", increment)
+	http.Handle("/metrics", promhttp.Handler())
 	log.Fatal(http.ListenAndServe(":80", nil))
 }
