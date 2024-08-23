@@ -48,7 +48,6 @@ env:
   DEPLOYMENT_NAME: 'ws-cpt-go' # TODO: update to your deployment name
   REPOSITORY: 'registry' # TODO: update to your Artifact Registry docker repository name
   IMAGE: 'ws-cpt-go'
-  WORKLOAD_IDENTITY_PROVIDER: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider' # TODO: update to your workload identity provider
 
 jobs:
   setup-build-publish-deploy:
