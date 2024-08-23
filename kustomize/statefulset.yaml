@@ -7,7 +7,7 @@ spec:
     matchLabels:
       app: ws-cpt-go
   serviceName: "ws-cpt-go"
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:

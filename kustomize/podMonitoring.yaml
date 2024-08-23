@@ -1,0 +1,11 @@
+apiVersion: monitoring.googleapis.com/v1
+kind: PodMonitoring
+metadata:
+  name: ws-cpt-go-0
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ws-cpt-go-0
+  endpoints:
+    - port: www
+      interval: 30s
