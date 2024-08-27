@@ -1,11 +1,21 @@
 apiVersion: monitoring.googleapis.com/v1
 kind: PodMonitoring
 metadata:
-  name: ws-cpt-go-0
+  name: ws-cpt-go
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: ws-cpt-go-0
+      app.kubernetes.io/name: ws-cpt-go
   endpoints:
     - port: www
       interval: 30s
+      scheme: http
+---
+apiVersion: monitoring.googleapis.com/v1
+kind: OperatorConfig
+metadata:
+  namespace: gmp-public
+  name: config
+features:
+  targetStatus:
+    enabled: true
