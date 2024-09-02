@@ -5,17 +5,8 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: ws-cpt-go
+      app: ws-cpt-go
   endpoints:
-    - port: www
+    - port: http
       interval: 30s
       scheme: http
----
-apiVersion: monitoring.googleapis.com/v1
-kind: OperatorConfig
-metadata:
-  namespace: gmp-public
-  name: config
-features:
-  targetStatus:
-    enabled: true
