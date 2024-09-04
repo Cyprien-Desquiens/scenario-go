@@ -52,7 +52,7 @@ env:
 jobs:
   setup-build-publish-deploy:
     name: 'Setup, Build, Publish, and Deploy'
-    runs-on: 'ubuntu-latest'
+    runs-on: 'arc-runner-set-cde'
     environment: 'sandbox'
 
     permissions:
