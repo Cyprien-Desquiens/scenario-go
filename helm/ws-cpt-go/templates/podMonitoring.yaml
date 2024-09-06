@@ -1,0 +1,12 @@
+apiVersion: monitoring.googleapis.com/v1
+kind: PodMonitoring
+metadata:
+  name: ws-cpt-go
+spec:
+  selector:
+    matchLabels:
+      app: ws-cpt-go
+  endpoints:
+    - port: http
+      interval: 30s
+      scheme: http

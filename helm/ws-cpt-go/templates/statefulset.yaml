@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ws-cpt-go
+spec:
+  selector:
+    matchLabels:
+      app: ws-cpt-go
+  serviceName: "ws-cpt-go"
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  template:
+    metadata:
+      labels:
+        app: ws-cpt-go
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: ws-cpt-go
+          image: europe-west3-docker.pkg.dev/valiuz-sbx-cde/registry/ws-cpt-go:0869d1a5fb6f04a0bca10cb2047e4e80579f393c
+          ports:
+            - containerPort: 80
+              name: http
+          volumeMounts:
+            - name: www
+              mountPath: /app/stock
+  volumeClaimTemplates:
+    - metadata:
+        name: www
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: standard
+        resources:
+          requests:
+            storage: 1Mi
